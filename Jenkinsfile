@@ -3,7 +3,6 @@ node('rocketzhang-jnlp') {
         echo "1.Prepare Stage"
         checkout scm
         script {
-            #env.BRANCH_NAME = sh(returnStdout: true, script: 'git symbolic-ref --short -q HEAD').trim()
             env.BRANCH_NAME = 'master'
             build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
             if (env.BRANCH_NAME != 'master') {
