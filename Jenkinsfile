@@ -24,6 +24,7 @@ node('rocketzhang-jnlp') {
         withCredentials([usernamePassword(credentialsId: 'Ali-dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword} registry.cn-shanghai.aliyuncs.com"
             sh "docker push registry.cn-shanghai.aliyuncs.com/zym-svc/jenkins-demo:${build_tag}"
+            sh "docker rmi registry.cn-shanghai.aliyuncs.com/zym-svc/jenkins-demo:${build_tag}"
         }
     }
 
