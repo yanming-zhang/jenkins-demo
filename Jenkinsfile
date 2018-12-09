@@ -32,8 +32,8 @@ node('rocketzhang-jnlp') {
         if (env.BRANCH_NAME == 'master') {
             input "确认要部署线上环境吗？"
         }
-        sh "sed -i 's/<BUILD_TAG>/${build_tag}/' k8s.yaml"
-        sh "sed -i 's/<BRANCH_NAME>/${env.BRANCH_NAME}/' k8s.yaml"
+        sh "sed -i 's/<BUILD_TAG>/${build_tag}/' k8s-test.yaml"
+        sh "sed -i 's/<BRANCH_NAME>/${env.BRANCH_NAME}/' k8s-test.yaml"
         sh "kubectl apply -f k8s-test.yaml --record"
     }
 }
