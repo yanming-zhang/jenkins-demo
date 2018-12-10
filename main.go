@@ -1,13 +1,15 @@
 package main
 
-// Import the fmt for formatting strings
-// Import os so we can read environment variables from the system
 import (
 	"fmt"
-	"os"
+	"net/http"
 )
 
+func handler(writer http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(writer, "Hello World, %s!", request.URL.Path[1:])
+}
+
 func main() {
-	fmt.Println("Hello, Kubernetes！I'm from Jenkins CI！")
-	fmt.Println("BRANCH_NAME:", os.Getenv("branch"))
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":8080", nil)
 }
